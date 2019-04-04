@@ -1,5 +1,6 @@
-.pdf
+*.pdf
 .vscode/
+.CS261_Textbook/
 
 # Prerequisites
 *.d
