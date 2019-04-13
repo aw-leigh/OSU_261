@@ -36,7 +36,7 @@ void fooB(int* jptr){
      jptr -= 1;
       
      /*Print the address of jptr itself*/
-     printf("The address of jptr is %p\n\n", &jptr);
+     printf("In fooB, the address of jptr is %p\n\n", &jptr);
 }
 
 
@@ -55,23 +55,26 @@ int main(){
     
     /*Print the value of x*/
     printf("After calling fooA, the value of x is %d\n\n", x);
+
+        // Is the value of x different than the value that 
+        // was printed at first? Why or why not?
+        //
+        // Yes, because the pointer is dereferenced and the memory locations
+        // storing the value of x was changed
     
     /*Call fooB() with the address of x*/
     fooB(&x);
 
     /*Print the value and address of x*/
-    printf("The value of x is %d\n", x);
-    printf("The address of x is %p\n\n", &x);
+    printf("After calling fooB, the value of x is %d\n", x);
+    printf("After calling fooB, the address of x is %p\n\n", &x);
+
+        // Are the value and address of x different than the value and
+        // address that were printed before the call to fooB(..)? Why or why not?
+        //
+        // No, because the pointer was not dereferenced. The values of the copies
+        // passed into the funciton were changed, but did not persist once out of scope
  
     
     return 0;
 }
-
-
-/* Are the value and address of x different than the value and address that were
-printed before the call to fooB(..)? Why or why not?
-
-No, because only a copy of x's address is passed to fooB. fooB changes its copy of x's address,
-but the copy disappears when the function goes out of scope.
-
-*/
