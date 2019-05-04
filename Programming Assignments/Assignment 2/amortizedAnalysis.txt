@@ -12,3 +12,5 @@ starts out at capacity 8, assuming that the array will grow by a constant 2 spac
 full dynamic array? As N(ie. the number of pushes) grows large, under this strategy for resizing, what is the average big-oh 
 complexity for a push?
 
+50 + 9 + 11 + 13 ... + 49 = 659 units.
+Average: Every other operation is O(n), so the average is O(n/2), which is just O(n).

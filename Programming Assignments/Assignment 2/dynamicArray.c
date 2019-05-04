@@ -27,7 +27,7 @@ void initDynArr(DynArr *v, int capacity)
 {
 	assert(capacity > 0);
 	assert(v!= 0);
-	v->data = (TYPE *) malloc(sizeof(TYPE) * capacity);
+	v->data = (TYPE *)malloc(sizeof(TYPE) * capacity);
 	assert(v->data != 0);
 	v->size = 0;
 	v->capacity = capacity;	
@@ -44,7 +44,7 @@ void initDynArr(DynArr *v, int capacity)
 DynArr* newDynArr(int cap)
 {
 	assert(cap > 0);
-	DynArr *r = (DynArr *)malloc(sizeof( DynArr));
+	DynArr *r = (DynArr *)malloc(sizeof(DynArr));
 	assert(r != 0);
 	initDynArr(r,cap);
 	return r;
@@ -104,7 +104,7 @@ void _dynArrSetCapacity(DynArr *v, int newCap)
 	newArray.size = v->size;
 
 	//delete old array
-	freeDynArr(v);
+	deleteDynArr(v);
 
 	//set v pointer to new array
 	*v = newArray;

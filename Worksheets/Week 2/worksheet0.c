@@ -95,12 +95,17 @@ int sizeBag (struct arrayBagStack * b) {
 /* Stack Implementation */
 void pushStack (struct arrayBagStack * b, TYPE v) {
 
+	assert(b->count < MAX_SIZE);
 	b->data[b->count] = v;
 	b->count++;
 
 }
 TYPE topStack (struct arrayBagStack * b) {
 
+	if(isEmptyStack(b))
+	{
+		return 0; //if stack is empty, don't return leftover value is index 0.
+	}
 	return b->data[b->count];
 
 } 

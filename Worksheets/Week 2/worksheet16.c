@@ -23,7 +23,7 @@ struct DynArr {
 void dynArrayPush (struct DynArr * da, TYPE e) {
 
 	//if stack is full, double its capacity
-	if(da->size >= da->capacity)
+	if(da->size <= da->capacity)
 		_setCapacityDynArr(da, 2 * da->capacity);
 	
 	da->data[da->size] = e;
@@ -34,7 +34,7 @@ void dynArrayPush (struct DynArr * da, TYPE e) {
 TYPE dynArrayTop (struct DynArr * da) {
 
 	//check if stack is empty
-	assert(da->size > 0);
+	assert(da->size > 0 && da->size <= da->capacity);
 	
 	//return value at top of the stack
 	return da->data[da->size - 1];

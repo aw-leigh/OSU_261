@@ -1,3 +1,5 @@
+/*Assume you have access to all existing dynArr functions */
+
 #include <stdio.h>
 #include <stdlib.h>
 
@@ -137,3 +139,46 @@ void removeAtDynArr (struct DynArr * da, int index) {
 
 }
 
+/* _binarySearch is also included in dynArr.c now as an internal function! */
+int _binarySearch(TYPE *data, int size, TYPE testValue);
+
+
+/* These are the new functions to take advantage of the ordered dynamic array 
+   and available to the end user , so they will be declared in the .h file */
+
+int dyArrayBinarySearch (struct DynArr * da, TYPE testValue) {
+   return _binarySearch (da->data, da->size, testValue); }
+
+void orderedArrayAdd (struct DynArr *da, TYPE newElement) {
+   int index = _binarySearch(da->data, da->size, newElement);
+   dyArrayAddAt (da, index, newElement);  /* takes care of resize if necessary*/
+}
+
+
+///// WORKSHEET FUNCTIONS START HERE //////
+
+   /* you must complete the following */
+
+ int orderedArrayContains (struct DynArr *da, TYPE testElement) {
+    int index = _binarySearch(da, da->size, testElement);
+
+    //if legal index, return if it matches data
+    if(index < da->size){ 
+        return da->data[index] == testElement;
+    }
+    
+    //if illegal index, return false
+    return 0; 
+}
+
+ void orderedArrayRemove (struct DynArr *da, TYPE testElement) {
+
+    int index = _binarySearch(da, da->size, testElement);
+
+    //if index is legal and testElement is found, delete that index
+    if(index < da->size){ 
+        if(da->data[index] == testElement){
+            removeAtDynArr(da, index);
+        }
+    }
+}

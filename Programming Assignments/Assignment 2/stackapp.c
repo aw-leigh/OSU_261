@@ -33,11 +33,10 @@ char nextChar(char* s)
 int isBalanced(char* s)
 {
 	char temp;
-	int isEmpty;
+	int isBalanced = 1;
 
 	//initialize the stack
 	struct DynArr *stack = newDynArr(8);
-	initDynArr(stack, 8);
 	
 	do
 	{
@@ -50,7 +49,7 @@ int isBalanced(char* s)
 		}
 		else if(temp == '{')
 		{
-			pushDynArr(stack, '}');
+			pushDynArr(stack, '}');  
 		}
 		else if(temp == '[')
 		{
@@ -63,7 +62,7 @@ int isBalanced(char* s)
 		{
 			if(isEmptyDynArr(stack))
 			{
-				return 0;
+				isBalanced = 0;
 			}
 			if(topDynArr(stack) == temp)
 			{
@@ -71,23 +70,30 @@ int isBalanced(char* s)
 			}
 			else
 			{
-				return 0;
+				isBalanced = 0;
 			}
 		}
 	}while(temp != '\0'); //I think this does an extra unnecessary loop
 
-	//if the stack is not empty, the expression is unbalanced
-	isEmpty = isEmptyDynArr(stack);
+	//if the pexpression hasn't been invalidated yet
+	//check if the stack is empty. If it is not empty, the expression is unbalanced
+	if(isBalanced != 0){
+		isBalanced = isEmptyDynArr(stack);
+	}
 
 	//memory leaks are bad
-	freeDynArr(stack);
+	deleteDynArr(stack);
 
-	return isEmpty;
+	return isBalanced;
 }
 
 int main(int argc, char* argv[]){
 	
-	char* s=argv[1];	
+	char* s=argv[1];
+		if(s == NULL){
+			printf("The string is balanced\n");
+			return 0;
+		}	
 	int res;
 	
 	printf("Assignment 2\n");
